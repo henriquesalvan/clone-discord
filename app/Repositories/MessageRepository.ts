@@ -11,7 +11,7 @@ export default class MessageRepository {
         const message = await this.fill(data).save();
 
         if (message.$isPersisted) {
-            message.preload("user");
+            await message.preload("user");
             return message;
         }
 
