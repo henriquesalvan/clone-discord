@@ -7,14 +7,14 @@ export default class RegisterValidator {
     }
 
     public schema = schema.create({
-        name: schema.string({trim: true}, [
-            rules.minLength(3),
+        name: schema.string({}, [
+            rules.minLength(4),
         ]),
         cpf: schema.string({trim: true}, [
             rules.minLength(14),
             rules.unique({ table: 'users', column: 'cpf' })
         ]),
-        password: schema.string({trim: true}, [
+        password: schema.string({}, [
             rules.minLength(6),
         ]),
     });

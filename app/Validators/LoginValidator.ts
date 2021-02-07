@@ -10,7 +10,7 @@ export default class LoginValidator {
         cpf: schema.string({trim: true}, [
             rules.minLength(14),
         ]),
-        password: schema.string({trim: true}, [
+        password: schema.string({}, [
             rules.minLength(6),
         ]),
     });

@@ -1,14 +1,17 @@
 import {HttpContextContract} from "@ioc:Adonis/Core/HttpContext";
 import {rules, schema}       from "@ioc:Adonis/Core/Validator";
 
-export default class CheckCPFValidator {
+export default class MessageValidator {
 
     constructor(protected ctx: HttpContextContract) {
     }
 
     public schema = schema.create({
-        cpf: schema.string({trim: true}, [
-            rules.minLength(14),
+        message: schema.string({}, [
+            rules.minLength(1),
+        ]),
+        logged_user_id: schema.number([
+            rules.exists({table: "users", column: "id"})
         ]),
     });
 

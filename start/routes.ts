@@ -9,4 +9,8 @@ Route.group(() => {
     Route.post("/auth/register", "RegisterController.register");
     Route.post("/auth/register/checkCPF", "RegisterController.checkCPF");
 
+    Route.group(() => {
+        Route.resource("messages", "MessagesController").apiOnly().only(["index", "store"]);
+    }).middleware("auth");
+
 }).prefix("/api");

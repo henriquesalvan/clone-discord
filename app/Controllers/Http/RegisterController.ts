@@ -14,7 +14,7 @@ export default class RegisterController {
         const data = await request.validate(RegisterValidator);
         const user = await this.userRepository.store(data);
 
-        return {content: {exists: user}, success: !!user};
+        return {content: user, success: !!user};
 
     }
 
