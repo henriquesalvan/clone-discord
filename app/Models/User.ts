@@ -3,17 +3,18 @@ import {BaseModel, beforeSave, column,} from "@ioc:Adonis/Lucid/Orm";
 import {DateTime}                       from "luxon";
 
 export default class User extends BaseModel {
+
     @column({isPrimary: true})
     public id: number;
 
     @column()
-    public email: string;
+    public name: string;
+
+    @column()
+    public cpf: string;
 
     @column({serializeAs: null})
     public password: string;
-
-    @column()
-    public rememberMeToken?: string;
 
     @column.dateTime({autoCreate: true})
     public createdAt: DateTime;
@@ -27,4 +28,5 @@ export default class User extends BaseModel {
             user.password = await Hash.make(user.password);
         }
     }
+
 }
