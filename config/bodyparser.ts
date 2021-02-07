@@ -5,182 +5,182 @@
  * file.
  */
 
-import { BodyParserConfig } from '@ioc:Adonis/Core/BodyParser'
+import {BodyParserConfig} from "@ioc:Adonis/Core/BodyParser";
 
 const bodyParserConfig: BodyParserConfig = {
-  /*
-  |--------------------------------------------------------------------------
-  | White listed methods
-  |--------------------------------------------------------------------------
-  |
-  | HTTP methods for which body parsing must be performed. It is a good practice
-  | to avoid body parsing for `GET` requests.
-  |
-  */
-  whitelistedMethods: ['POST', 'PUT', 'PATCH', 'DELETE'],
-
-  /*
-  |--------------------------------------------------------------------------
-  | JSON parser settings
-  |--------------------------------------------------------------------------
-  |
-  | The settings for the JSON parser. The types defines the request content
-  | types which gets processed by the JSON parser.
-  |
-  */
-  json: {
-    encoding: 'utf-8',
-    limit: '1mb',
-    strict: true,
-    types: [
-      'application/json',
-      'application/json-patch+json',
-      'application/vnd.api+json',
-      'application/csp-report',
-    ],
-  },
-
-  /*
-  |--------------------------------------------------------------------------
-  | Form parser settings
-  |--------------------------------------------------------------------------
-  |
-  | The settings for the `application/x-www-form-urlencoded` parser. The types
-  | defines the request content types which gets processed by the form parser.
-  |
-  */
-  form: {
-    encoding: 'utf-8',
-    limit: '1mb',
-    queryString: {},
-    types: [
-      'application/x-www-form-urlencoded',
-    ],
-  },
-
-  /*
-  |--------------------------------------------------------------------------
-  | Raw body parser settings
-  |--------------------------------------------------------------------------
-  |
-  | Raw body just reads the request body stream as a plain text, which you
-  | can process by hand. This must be used when request body type is not
-  | supported by the body parser.
-  |
-  */
-  raw: {
-    encoding: 'utf-8',
-    limit: '1mb',
-    queryString: {},
-    types: [
-      'text/*',
-    ],
-  },
-
-  /*
-  |--------------------------------------------------------------------------
-  | Multipart parser settings
-  |--------------------------------------------------------------------------
-  |
-  | The settings for the `multipart/form-data` parser. The types defines the
-  | request content types which gets processed by the form parser.
-  |
-  */
-  multipart: {
     /*
     |--------------------------------------------------------------------------
-    | Auto process
+    | White listed methods
     |--------------------------------------------------------------------------
     |
-    | The auto process option will process uploaded files and writes them to
-    | the `tmp` folder. You can turn it off and then manually use the stream
-    | to pipe stream to a different destination.
-    |
-    | It is recommended to keep `autoProcess=true`. Unless you are processing bigger
-    | file sizes.
+    | HTTP methods for which body parsing must be performed. It is a good practice
+    | to avoid body parsing for `GET` requests.
     |
     */
-    autoProcess: true,
+    whitelistedMethods: ["POST", "PUT", "PATCH", "DELETE"],
 
     /*
     |--------------------------------------------------------------------------
-    | Files to be processed manually
+    | JSON parser settings
     |--------------------------------------------------------------------------
     |
-    | You can turn off `autoProcess` for certain routes by defining
-    | routes inside the following array.
+    | The settings for the JSON parser. The types defines the request content
+    | types which gets processed by the JSON parser.
     |
-    | NOTE: Make sure the route pattern starts with a leading slash.
-    |
-    | Correct
-    | ```js
-    | /projects/:id/file
-    | ```
-    |
-    | Incorrect
-    | ```js
-    | projects/:id/file
-    | ```
     */
-    processManually: [],
+    json: {
+        encoding: "utf-8",
+        limit: "1mb",
+        strict: true,
+        types: [
+            "application/json",
+            "application/json-patch+json",
+            "application/vnd.api+json",
+            "application/csp-report",
+        ],
+    },
 
     /*
     |--------------------------------------------------------------------------
-    | Temporary file name
+    | Form parser settings
     |--------------------------------------------------------------------------
     |
-    | When auto processing is on. We will use this method to compute the temporary
-    | file name. AdonisJs will compute a unique `tmpPath` for you automatically,
-    | However, you can also define your own custom method.
+    | The settings for the `application/x-www-form-urlencoded` parser. The types
+    | defines the request content types which gets processed by the form parser.
     |
     */
-    // tmpFileName () {
-    // },
+    form: {
+        encoding: "utf-8",
+        limit: "1mb",
+        queryString: {},
+        types: [
+            "application/x-www-form-urlencoded",
+        ],
+    },
 
     /*
     |--------------------------------------------------------------------------
-    | Encoding
+    | Raw body parser settings
     |--------------------------------------------------------------------------
     |
-    | Request body encoding
+    | Raw body just reads the request body stream as a plain text, which you
+    | can process by hand. This must be used when request body type is not
+    | supported by the body parser.
     |
     */
-    encoding: 'utf-8',
+    raw: {
+        encoding: "utf-8",
+        limit: "1mb",
+        queryString: {},
+        types: [
+            "text/*",
+        ],
+    },
 
     /*
     |--------------------------------------------------------------------------
-    | Max Fields
+    | Multipart parser settings
     |--------------------------------------------------------------------------
     |
-    | The maximum number of fields allowed in the request body. The field includes
-    | text inputs and files both.
+    | The settings for the `multipart/form-data` parser. The types defines the
+    | request content types which gets processed by the form parser.
     |
     */
-    maxFields: 1000,
+    multipart: {
+        /*
+        |--------------------------------------------------------------------------
+        | Auto process
+        |--------------------------------------------------------------------------
+        |
+        | The auto process option will process uploaded files and writes them to
+        | the `tmp` folder. You can turn it off and then manually use the stream
+        | to pipe stream to a different destination.
+        |
+        | It is recommended to keep `autoProcess=true`. Unless you are processing bigger
+        | file sizes.
+        |
+        */
+        autoProcess: true,
 
-    /*
-    |--------------------------------------------------------------------------
-    | Request body limit
-    |--------------------------------------------------------------------------
-    |
-    | The total limit to the multipart body. This includes all request files
-    | and fields data.
-    |
-    */
-    limit: '20mb',
+        /*
+        |--------------------------------------------------------------------------
+        | Files to be processed manually
+        |--------------------------------------------------------------------------
+        |
+        | You can turn off `autoProcess` for certain routes by defining
+        | routes inside the following array.
+        |
+        | NOTE: Make sure the route pattern starts with a leading slash.
+        |
+        | Correct
+        | ```js
+        | /projects/:id/file
+        | ```
+        |
+        | Incorrect
+        | ```js
+        | projects/:id/file
+        | ```
+        */
+        processManually: [],
 
-    /*
-    |--------------------------------------------------------------------------
-    | Types
-    |--------------------------------------------------------------------------
-    |
-    | The types that will be considered and parsed as multipart body.
-    |
-    */
-    types: [
-      'multipart/form-data',
-    ],
-  },
-}
+        /*
+        |--------------------------------------------------------------------------
+        | Temporary file name
+        |--------------------------------------------------------------------------
+        |
+        | When auto processing is on. We will use this method to compute the temporary
+        | file name. AdonisJs will compute a unique `tmpPath` for you automatically,
+        | However, you can also define your own custom method.
+        |
+        */
+        // tmpFileName () {
+        // },
 
-export default bodyParserConfig
+        /*
+        |--------------------------------------------------------------------------
+        | Encoding
+        |--------------------------------------------------------------------------
+        |
+        | Request body encoding
+        |
+        */
+        encoding: "utf-8",
+
+        /*
+        |--------------------------------------------------------------------------
+        | Max Fields
+        |--------------------------------------------------------------------------
+        |
+        | The maximum number of fields allowed in the request body. The field includes
+        | text inputs and files both.
+        |
+        */
+        maxFields: 1000,
+
+        /*
+        |--------------------------------------------------------------------------
+        | Request body limit
+        |--------------------------------------------------------------------------
+        |
+        | The total limit to the multipart body. This includes all request files
+        | and fields data.
+        |
+        */
+        limit: "20mb",
+
+        /*
+        |--------------------------------------------------------------------------
+        | Types
+        |--------------------------------------------------------------------------
+        |
+        | The types that will be considered and parsed as multipart body.
+        |
+        */
+        types: [
+            "multipart/form-data",
+        ],
+    },
+};
+
+export default bodyParserConfig;
